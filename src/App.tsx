@@ -1,35 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Alert from "./components/alert";
+import Buttons from "./components/buttons";
+import ListGroup from "./components/ListGroups";
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+const App = () => {
+  let [alertVisible, alertVisibility] = useState(false);
+  return <div>
+    {alertVisible && <Alert onClose={() => alertVisibility(false)}>
+      Hello <span>World</span>
+    </Alert>}
+    <Buttons children="Hello World"  onClick={() => alertVisibility(true)}></Buttons>
+    <ListGroup items={["New York", "California", "Texas", "Florida"]} heading="Cities" selectedItem={(item) => console.log(item)}/>
+  </div>
 }
 
-export default App
+export default App;
